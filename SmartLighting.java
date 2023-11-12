@@ -41,11 +41,11 @@ public class SmartLighting extends SmartCitySimulation implements Runnable {
 		try {
 			for (int i = 0; i < 6; i++) { // the 6 hours of Monitoring. The every hour report (we use one minute for the demonstation)
 
-				if (((ArrayList<SmartLighting>) lux).get(i).getBrightness() < 100) { 
-					System.out.println("The hour " + i + ": The lights should be turn on!");
+				if (((ArrayList<SmartLighting>) lux).get(i).getBrightness() < 200) { 
+					System.out.println("\nThe hour " + i + ": The lights should be turn on!");
 				}
 				
-				if (((ArrayList<SmartLighting>) lux).get(i).getBrightness() > 100) {
+				if (((ArrayList<SmartLighting>) lux).get(i).getBrightness() > 200) {
 					System.out.println("\nThe hour " + i + ": The lights are off.");
 				}
 
