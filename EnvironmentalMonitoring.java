@@ -120,7 +120,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 
 		try {
 			FileOutputStream file = new FileOutputStream(
-					"//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//environment_data.csv");
+					"environment_data.csv");
 			String text = info(info);
 			byte b[] = text.getBytes(); // converting the String text into the bytes;
 			file.write(b); // writes the whole text onto the file
@@ -137,7 +137,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 		FileInputStream fileInputStream = null;
 		try {
 			fileInputStream = new FileInputStream(
-					"//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//environment_data.csv"); 
+					"environment_data.csv"); 
 																														
 			int currentByte;
 			while ((currentByte = fileInputStream.read()) != -1) {
