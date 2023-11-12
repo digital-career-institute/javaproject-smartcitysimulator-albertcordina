@@ -45,16 +45,21 @@ public class SmartCitySimulation {
         Thread monitoringThread = new Thread(environmentalMonitoring);
 
         trafficThread.start();
-        lightingThread.start();
-        monitoringThread.start();
-
-        // Add exception handling for each component
         try {
             trafficThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();}
+        
+        lightingThread.start();
+        try {
             lightingThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();}
+        
+        monitoringThread.start();
+        try {
             monitoringThread.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace();}  
     }
 }
