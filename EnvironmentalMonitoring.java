@@ -133,8 +133,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 	}
 
 	public static void reading(String fileName) throws IOException { // the method is only for one file due to the one
-																		// link to the file
-
+																		
 		FileInputStream fileInputStream = null;
 		try {
 			fileInputStream = new FileInputStream(
