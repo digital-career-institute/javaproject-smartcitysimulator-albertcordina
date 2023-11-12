@@ -83,7 +83,7 @@ public class SmartLighting extends SmartCitySimulation implements Runnable {
 
 		try {
 			FileOutputStream file = new FileOutputStream(
-					"//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//lightSensor_data.csv");
+					"lightSensor_data.csv");
 			String text = info(info);
 			byte b[] = text.getBytes(); // converting the String text into the bytes;
 			file.write(b); // writes the whole text onto the file
@@ -100,7 +100,7 @@ public class SmartLighting extends SmartCitySimulation implements Runnable {
 		FileInputStream fileInputStream = null;
 		try {
 			fileInputStream = new FileInputStream(
-					"//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//lightSensor_data.csv"); 
+					"lightSensor_data.csv"); 
 																														
 			int currentByte;
 			while ((currentByte = fileInputStream.read()) != -1) {
