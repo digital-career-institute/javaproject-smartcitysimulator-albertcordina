@@ -27,7 +27,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 	int airQualityIndexLimit; // see above
 	int temperatureLimit; // see above
 	private String info;
-	private static String fileName = "environment_data.csv";
+	//private static String fileName = "environment_data.csv";
 
 	public EnvironmentalMonitoring(int noiseLevelLimit, int airQualityIndexLimit, int temperatureLimit) {
 		super();
@@ -60,7 +60,8 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 
 //  simulation of the 6hour report of the level of noise (in dB), Air Quality Index (AQI), and the temperature     	 
 
-	public void run() { // Implement environmental monitoring logic / Monitor air quality, noise levels, temperature
+	public void run() { // Implement environmental monitoring logic / Monitor air quality, noise levels,
+						// temperature
 
 		try {
 			for (int i = 0; i < 6; i++) { // the 12 hours of Monitoring. The every hour report (we use one minute for
@@ -80,7 +81,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 						&& ((ArrayList<EnvironmentalMonitoring>) environment).get(i).getTemperatureLimit() > -20)
 
 				{
-					System.out.println("\nThe hour " + i + ": all the Environmental conditions are acceptable.");
+					System.out.println("The hour " + i + ": all the Environmental conditions are acceptable.");
 				}
 
 				writing();
@@ -93,13 +94,6 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		try {
-			reading(fileName); // call the method above to read the file;
-			System.out.println("\nReading the file: 'environment_data.csv' was successful.");
-		} // report a successfully reading;
-		catch (IOException e) {
-			System.err.println("An error occurred during the operation: " + e.getMessage());
-		} // if Error;
 
 	}
 
@@ -119,8 +113,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 	public void writing() { // the method 'writing' writes the String 'info' into the file
 
 		try {
-			FileOutputStream file = new FileOutputStream(
-					"environment_data.csv");
+			FileOutputStream file = new FileOutputStream("//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//environment_data.csv");
 			String text = info(info);
 			byte b[] = text.getBytes(); // converting the String text into the bytes;
 			file.write(b); // writes the whole text onto the file
@@ -133,12 +126,12 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 	}
 
 	public static void reading(String fileName) throws IOException { // the method is only for one file due to the one
-																		
+																		// link to the file
+
 		FileInputStream fileInputStream = null;
 		try {
-			fileInputStream = new FileInputStream(
-					"environment_data.csv"); 
-																														
+			fileInputStream = new FileInputStream("//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//environment_data.csv");
+
 			int currentByte;
 			while ((currentByte = fileInputStream.read()) != -1) {
 				System.out.print((char) currentByte);
