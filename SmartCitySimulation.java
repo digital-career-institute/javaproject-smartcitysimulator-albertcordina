@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -6,60 +7,78 @@ import java.util.ArrayList;
  * 
  */
 public class SmartCitySimulation {
-	
-	static ArrayList <Vehicle> vehicles = new ArrayList <> ();
-	static ArrayList <EnvironmentalMonitoring> environment = new ArrayList <> ();
-	static ArrayList <SmartLighting> lux = new ArrayList <> ();
-	 
-    public static void main(String[] args) {
-    	
+
+	static ArrayList<Vehicle> vehicles = new ArrayList<>();
+	static ArrayList<EnvironmentalMonitoring> environment = new ArrayList<>();
+	static ArrayList<SmartLighting> lux = new ArrayList<>();
+	static String fileName;
+
+	public static void main(String[] args) {
+
 //       simulation of the list of the vehicles       		 
-    	 vehicles.add (new Vehicle ("cars", 5.00, 23.00)); // assigning the values as an example
-    	 vehicles.add (new Vehicle ("trucks", 8.00, 16.00));  
-    	 vehicles.add (new Vehicle ("motorcycles", 11.00, 13.00)); 
-    	 
+		vehicles.add(new Vehicle("cars", 5.00, 22.00)); // assigning the values as an example
+		vehicles.add(new Vehicle("trucks", 8.00, 16.00));
+		vehicles.add(new Vehicle("motorcycles", 11.00, 13.00));
+
 //       simulation of the 6hour timeframe report of the level of noise (in dB), Air Quality Index (AQI), and the temperature     	 
-    	 environment.add(new EnvironmentalMonitoring (50, 100, 10)); 
-    	 environment.add(new EnvironmentalMonitoring (60, 120, 14));
-    	 environment.add(new EnvironmentalMonitoring (80, 135, 15));
-    	 environment.add(new EnvironmentalMonitoring (90, 140, 15));
-    	 environment.add(new EnvironmentalMonitoring (79, 138, 16));
-    	 environment.add(new EnvironmentalMonitoring (80, 155, 16));
+		environment.add(new EnvironmentalMonitoring(51, 100, 10));
+		environment.add(new EnvironmentalMonitoring(60, 120, 14));
+		environment.add(new EnvironmentalMonitoring(80, 135, 15));
+		environment.add(new EnvironmentalMonitoring(90, 140, 15));
+		environment.add(new EnvironmentalMonitoring(79, 138, 16));
+		environment.add(new EnvironmentalMonitoring(80, 155, 16));
 
 //       simulation of the 6hour timeframe brightness report during the daylight by the sensor data
-    	 lux.add(new SmartLighting (80)); // assigning the current values as an exapmple
-    	 lux.add(new SmartLighting (150));
-    	 lux.add(new SmartLighting (500));
-    	 lux.add(new SmartLighting (1500));
-    	 lux.add(new SmartLighting (5000));
-    	 lux.add(new SmartLighting (5500));
+		lux.add(new SmartLighting(94)); // assigning the current values as an exapmple
+		lux.add(new SmartLighting(150));
+		lux.add(new SmartLighting(500));
+		lux.add(new SmartLighting(1500));
+		lux.add(new SmartLighting(5000));
+		lux.add(new SmartLighting(5500));
 
-    	EnvironmentalMonitoring environmentalMonitoring = new EnvironmentalMonitoring();
-        TrafficManagement trafficManagement = new TrafficManagement();
-        SmartLighting smartLighting = new SmartLighting(); 
-           
+		EnvironmentalMonitoring environmentalMonitoring = new EnvironmentalMonitoring();
+		TrafficManagement trafficManagement = new TrafficManagement();
+		SmartLighting smartLighting = new SmartLighting();
 
-        // Start simulation components using multithreading
-        Thread trafficThread = new Thread(trafficManagement);
-        Thread lightingThread = new Thread(smartLighting);
-        Thread monitoringThread = new Thread(environmentalMonitoring);
+		// Start simulation components using multithreading
+		Thread trafficThread = new Thread(trafficManagement);
+		Thread lightingThread = new Thread(smartLighting);
+		Thread monitoringThread = new Thread(environmentalMonitoring);
 
-        trafficThread.start();
-        try {
-            trafficThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();}
-        
-        lightingThread.start();
-        try {
-            lightingThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();}
-        
-        monitoringThread.start();
-        try {
-            monitoringThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();}  
-    }
+		trafficThread.start();
+		lightingThread.start();
+		monitoringThread.start();
+
+		try {
+			trafficThread.join();
+			lightingThread.join();
+			monitoringThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			smartLighting.reading(fileName); // call the method to read the file
+			System.out.println("Reading the file: 'lightSensor_data.csv' was successful.\n");
+		} // report a successfully reading
+		catch (IOException e) {
+			System.err.println("An error occurred during the operation: " + e.getMessage());
+		} // if Error
+
+		try {
+			environmentalMonitoring.reading(fileName); // call the method to read the file
+			System.out.println("Reading the file: 'environment_data.csv' was successful.\n");
+		} // report a successfully reading
+		catch (IOException e) {
+			System.err.println("An error occurred during the operation: " + e.getMessage());
+		} // if Error;
+
+		try {
+			trafficManagement.reading(fileName); // call the method to read the file
+			System.out.println("Reading the file: 'traffic_data.csv' was successful.\n");
+		} // report a successfully reading
+		catch (IOException e) {
+			System.err.println("An error occurred during the operation: " + e.getMessage());
+		} // if Error
+	}
 }
