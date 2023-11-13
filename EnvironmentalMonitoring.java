@@ -27,8 +27,7 @@ public class EnvironmentalMonitoring extends SmartCitySimulation implements Runn
 	int airQualityIndexLimit; // see above
 	int temperatureLimit; // see above
 	private String info;
-	//private static String fileName = "environment_data.csv";
-
+	
 	public EnvironmentalMonitoring(int noiseLevelLimit, int airQualityIndexLimit, int temperatureLimit) {
 		super();
 		this.noiseLevelLimit = noiseLevelLimit;
