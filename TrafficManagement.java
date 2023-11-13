@@ -14,11 +14,6 @@ import java.util.List;
 public class TrafficManagement extends SmartCitySimulation implements Runnable {
 
 	private static String info;
-	//private static String fileName = "traffic_data.csv";
-
-	 // Read traffic data from CSV
-     // Implement traffic management logic using collections
-     // Handle exceptions for I/O operations
 	
  public void run() {
 	 
