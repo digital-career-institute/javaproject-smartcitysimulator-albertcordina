@@ -57,6 +57,7 @@ public class SmartCitySimulation {
 			e.printStackTrace();
 		}
 
+		// Reading data from CSV files:
 		try {
 			smartLighting.reading(fileName); // call the method to read the file
 			System.out.println("Reading the file: 'lightSensor_data.csv' was successful.\n");
