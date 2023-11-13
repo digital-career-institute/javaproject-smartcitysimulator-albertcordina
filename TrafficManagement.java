@@ -14,7 +14,7 @@ import java.util.List;
 public class TrafficManagement extends SmartCitySimulation implements Runnable {
 
 	private static String info;
-	private static String fileName = "traffic_data.csv";
+	//private static String fileName = "traffic_data.csv";
 
 	 // Read traffic data from CSV
      // Implement traffic management logic using collections
@@ -23,10 +23,7 @@ public class TrafficManagement extends SmartCitySimulation implements Runnable {
  public void run() {
 	 
 	 writing(); // calling the method of writing into CSV file
-     try {
-         reading(fileName);  // call the method above;
-         System.out.println("\nReading the file: 'traffic_data.csv' was successful.");}  //  report a successfully reading
-     catch (IOException e) { System.err.println("An error occurred during the operation: " + e.getMessage());} // if Error
+
  }
  
  public String info (String info) { // the method 'info' saves the data of the ArrayList into String
@@ -43,7 +40,7 @@ public class TrafficManagement extends SmartCitySimulation implements Runnable {
  public void writing () { // the method 'writing' writes the String 'info' into the file
  
   try {
-        FileOutputStream file = new FileOutputStream("traffic_data.csv");
+        FileOutputStream file = new FileOutputStream("//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//traffic_data.csv");
         String text = info(info); 
         byte b[] = text.getBytes(); // converting the String text into the bytes;
         file.write(b); // writes the whole text onto the file
@@ -57,7 +54,7 @@ public class TrafficManagement extends SmartCitySimulation implements Runnable {
 
      FileInputStream fileInputStream = null;
      try {
-         fileInputStream = new FileInputStream("traffic_data.csv"); // new object to link to the file
+         fileInputStream = new FileInputStream("//home//dci-student//eclipse-workspace//SmartCitySimulation//resources//traffic_data.csv"); // new object to link to the file
          int currentByte;
          while ((currentByte = fileInputStream.read()) != -1) { System.out.print((char) currentByte);} // iterate and read the whole file
      }
