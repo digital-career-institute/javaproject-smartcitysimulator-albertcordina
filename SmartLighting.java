@@ -17,8 +17,7 @@ public class SmartLighting extends SmartCitySimulation implements Runnable {
 
 	int brightness;
 	private static String info;
-	//public static String fileName = "lightSensor_data.csv";
-
+	
 	public SmartLighting(int brightness) {
 		super();
 		this.brightness = brightness;
